@@ -1,0 +1,51 @@
+Laravel Queue
+
+
+
+sudo composer require "pda/pheanstalk"
+
+in .env file
+QUEUE_DRIVER=beanstalkd
+
+in config/queue.php file
+
+'default' => env('QUEUE_DRIVER', 'beanstalkd'),   // this is optional
+
+
+in class insert the following code for queuing
+
+Mail::queue("mailtest",array(), function ($message)  //mailtest is view
+     {    
+
+              $message->to('karter@keltron.org');
+              $message->subject('attahment queue');
+              $message->setBody("test queue");
+
+      });
+
+
+finally before we have to run execute following command for works the queue
+
+sudo php artisan queue:work //for single task to be executed
+
+sudo php artisan queue:listen //for listening all the queue job and to execute
+
+
+http://posts.danharper.me/laravel-queue-supervisor/
+https://scotch.io/tutorials/why-laravel-queues-are-awesome
+https://toniperic.com/2015/12/01/laravel-queues-demystified
+http://stackoverflow.com/questions/27601634/how-does-laravel-queue-work-and-what-if-php-artisan-queuelisten-stops
+http://stackoverflow.com/questions/26048698/what-is-the-difference-between-queuework-daemon-and-queuelisten
+https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps
+https://serversforhackers.com/monitoring-processes-with-supervisord
+
+
+
+
+
+
+
+
+
+
+

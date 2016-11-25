@@ -1,0 +1,98 @@
+curl -sS https://getcomposer.org/installer | php
+
+ sudo mv composer.phar /usr/local/bin/composer
+
+sudo chmod +x /usr/local/bin/composer
+
+
+modules required
+
+curl
+php5-cli
+composer installation
+php-xml
+php-mcrypt php-gd
+php-mbstring
+
+
+sudo composer create-project laravel/laravel lcontest
+
+
+git clone https://github.com/laravel/laravel.git
+
+php artisan key:generate
+
+
+in the case of php 7
+sudo apt-get install php5.6-xml
+
+sudo apt-get install php-xml
+
+
+http://stackoverflow.com/questions/28893710/whoops-looks-like-something-went-wrong-laravel-5-0
+
+vi .env.example 
+
+ sudo cp .env.example .env
+
+sudo php artisan key:generate
+
+
+
+Make sure on your httpd.conf/apache2.conf file or one of the config files for your site, you have 'AllowOverride All' set for the home directory of your laravel website. Without that, .htaccess will have no effect on that directory. Depending on your settings, you may also 
+
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+~                                                                                                                                              
+~            
+
+//=============
+
+you would need everything that is under your project folder and all its subfolders (I believe).
+You need all of /app as it contains you config and app files.
+You need /vendors because all your packages are there, including all the classes Laravel uses.
+You need your /public as that is where your css, js, and imgs are.
+You need your /bootstrap folder to start the app
+you get the point ;)
+
+
+//==========
+
+24/05/2016===
+Class 'Html' not found
+
+sudo composer require illuminate/html
+
+Hello,
+bindShared() have been replaced with singleton()
+It is located here: /path-to-your-project/vendor/illuminate/html/HtmlServiceProvider.php
+change on line no : 36 and 49
+
+http://stackoverflow.com/questions/34827188/php-fatal-error-call-to-undefined-method-illuminate-foundation-applicationbin
+
+
+
+ref:
+http://tecadmin.net/install-laravel-framework-on-ubuntu/
+https://www.howtoforge.com/tutorial/install-laravel-on-ubuntu-for-apache/
+http://freshwebdev.com/best-laravel-tutorial-beginners.html
+http://laravel.io/forum/02-03-2014-files-to-copy-when-moving-from-development-to-productio

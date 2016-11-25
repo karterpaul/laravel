@@ -1,0 +1,78 @@
+ 'api' => [
+        'throttle:60,1',
+    ],
+
+You can try this route 60 times per minute
+
+
+ For example, to limit a route to 60 requests every minute from a single IP address, you may do the following:
+
+Route::get('/api/users', ['middleware' => 'throttle:60,1', function () {
+    //
+}]);
+
+
+form not found
+
+composer.json:
+
+"require": {
+    "laravel/framework": "5.0.*",
+    "laravelcollective/html": "~5.0"
+},
+then i updated using:
+
+composer update
+in terminal. Next i edited my config/app.php in serviceproviders:
+
+'Collective\Html\HtmlServiceProvider',
+and aliases:
+
+'Form' => 'Collective\Html\FormFacade',
+'Html' => 'Collective\Html\HtmlFacade',
+
+
+
+=====04/05/2016======
+https://packagist.org/packages/barryvdh/laravel-dompdf
+https://github.com/barryvdh/laravel-dompdf
+
+
+25/09/2016
+
+
+down vote
+accepted
+There are two different issues listed.
+
+There is artisan queue:work and artisan queue:listen
+
+queue:work will simply pop off the next job in the queue, and process only that one job. This is a 'one off' command that will return to the command prompt once the one queue command is processed.
+queue:listen will listen to the queue, and continue to process any queue commands it receives. This will continue running indefinitely until you stop it.
+In Laravel >=4.2 there was a --daemon command added. The way it works is simply keeps running the queues directly, rather than rebooting the entire framework after every queue is processed. This is an optional command that significantly reduces the memory and cpu requirements of your queue.
+
+The important point with the --daemon command is that when you upgrade your application, you need to specifically restart your queue with queue:restart, otherwise you could potentially get all sorts of strange errors as your queue would still have the old code in memory.
+
+
+
+
+ref:
+https://mattstauffer.co/blog/api-rate-limiting-in-laravel-5-2
+
+https://laracasts.com/discuss/channels/laravel/laravel-collective-class-form-not-found?page=1
+
+http://kaltencoder.com/2015/07/laravel-5-package-creation-tutorial-part-1/l
+
+http://stackoverflow.com/questions/28378460/laravel-5-package-development/28383338#28383338
+===
+https://www.sitepoint.com/dependency-injection-laraavels-ioc/
+
+facedes
+http://www.n0impossible.com/article/how-to-create-facade-on-laravel-51
+http://code.tutsplus.com/tutorials/digging-in-to-laravels-ioc-container--cms-22167
+
+http://stackoverflow.com/questions/26048698/what-is-the-difference-between-queuework-daemon-and-queuelisten
+https://toniperic.com/2015/12/01/laravel-queues-demystified
+https://serversforhackers.com/monitoring-processes-with-supervisord
+https://scotch.io/tutorials/why-laravel-queues-are-awesome
+
