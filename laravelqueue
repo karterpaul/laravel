@@ -31,6 +31,8 @@ sudo php artisan queue:work //for single task to be executed
 sudo php artisan queue:listen //for listening all the queue job and to execute
 
 
+Reference:
+
 http://posts.danharper.me/laravel-queue-supervisor/
 https://scotch.io/tutorials/why-laravel-queues-are-awesome
 https://toniperic.com/2015/12/01/laravel-queues-demystified
